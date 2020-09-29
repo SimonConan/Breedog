@@ -14,4 +14,5 @@ docker-compose up
 
 ```bash
 docker-compose up
+docker exec -it breedog sh
 ```
