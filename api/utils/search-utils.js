@@ -1,0 +1,48 @@
+/**
+ * Return an object to be used in the aggregate MongoDB function
+ * @param {object} criteria 
+ */
+function breedInfo(criteria) {
+    const userCriteria = {};
+    for (const key in criteria) {
+        userCriteria[criteria[key]] = 1;
+    }
+    return {
+        ...userCriteria,
+        "nameId": 1,
+        "name": 1,
+        "originalLink": 1,
+        "imageUrl": 1,
+        "size": 1,
+        "lifespan": 1,
+        "budget": 1,
+        "score": {
+            "$add": weightedCriteria(criteria)
+        }
+    };
+}
+
+/**
+ * Return an array to be used to calculate the score 
+ * @param {object} criteria 
+ */
+function weightedCriteria(criteria) {
+    const weightedCriteria = [];
+    let multiplier = Object.keys(criteria).length + 1;
+
+    /**
+     * For each criteria given by the user, we create the array awaited by the aggregate function
+     * Each criteria is weighted : it is multiplied by its ranking in the user's choices
+     */
+    for (const key in criteria) {
+        const currentCriteriaWeight = ["$" + criteria[key], --multiplier];
+        const currentCriteriaMultiplyObject = { "$multiply": currentCriteriaWeight };
+        weightedCriteria.push(currentCriteriaMultiplyObject);
+    }
+
+    return weightedCriteria;
+}
+
+module.exports = {
+    breedInfo
+};

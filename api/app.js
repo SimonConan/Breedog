@@ -8,8 +8,8 @@ const app = express();
 
 app
     .use(bodyParser.json())
-    .use('/criteria', criteriaRouter)
-    .use('/breeds', breedsRouter)
+    .use('/api/criteria', criteriaRouter)
+    .use('/api/breeds', breedsRouter)
     .use((req, res, next) => {
         res.status(200).json({ message: 'Server UP and running' });
     });
