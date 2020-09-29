@@ -1,0 +1,12 @@
+version: '2.3'
+
+services:
+  node:
+    build: .
+    container_name: breedog
+    restart: always
+    ports:
+      - 3000:3000
+    volumes:
+      - ./:/var/breedog 
+      - /var/api/node_modules
