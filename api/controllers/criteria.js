@@ -1,3 +1,6 @@
+/**
+ * Return an object with all the available criteria
+ */
 exports.getCriteria = (req, res, next) => {
     const criteria = {
         "behavior": {

@@ -12,6 +12,9 @@ mongoose.connect(process.env.DEV_DB, {
 // We are read only so we just create an empty model
 const Breeds = mongoose.model('Breeds', new mongoose.Schema(), 'breeds');
 
+/**
+ * Get one breed based on the nameId passed in the url
+ */
 exports.getOneBreed = (req, res, next) => {
     Breeds.findOne({ nameId: req.params.nameId }).lean()
         .then(breed => {
