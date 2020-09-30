@@ -16,9 +16,27 @@ function breedInfo(criteria) {
         "size": 1,
         "lifespan": 1,
         "budget": 1,
-        "score": {
-            "$add": weightedCriteria(criteria)
-        }
+        "score": scoreFormula(criteria)
+    };
+}
+
+/**
+ * Return the formula to be used to calculate the affinity percentage with the breed
+ * @param {object} criteria 
+ */
+function scoreFormula(criteria) {
+    return {
+        "$multiply":
+        [
+            100,
+            {
+                "$divide": 
+                [ 
+                    { "$add": weightedCriteria(criteria) },
+                    scoreMax(criteria)
+                ]
+            }
+        ]
     };
 }
 
@@ -41,6 +59,18 @@ function weightedCriteria(criteria) {
     }
 
     return weightedCriteria;
+}
+
+/**
+ * Return an the maximal score than a breed can have regarding the user's criteria
+ * @param {object} criteria 
+ */
+function scoreMax(criteria) {
+    let scoreMax = 0, i = 0;
+    for (const key in criteria) {
+        scoreMax += ++i * 5;
+    }
+    return scoreMax;
 }
 
 module.exports = {
