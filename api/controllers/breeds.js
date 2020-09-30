@@ -34,11 +34,11 @@ exports.searchBreeds = (req, res, next) => {
     // We get all the criteria (to return and weighted) to use them in the project below
     const criteriaSearch = sUtils.breedInfo(req.body);
 
-    // We send the request to the DB, limit the results to the value specified in the .env file and sort by score DESC
+    // We send the request to the DB, sort by score DESC and limit the results to the value specified in the .env file
     Breeds.aggregate([
             { "$project": criteriaSearch },
-            { "$limit": parseInt(process.env.RESULTS_LIMIT) },
             { "$sort": { "score": -1 } },
+            { "$limit": parseInt(process.env.RESULTS_LIMIT) }
         ])
         .then(sortedBreeds => res.status(200).json(sortedBreeds))
         .catch(error => res.status(500).json({ error: error.message }));
