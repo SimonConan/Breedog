@@ -62,7 +62,7 @@ function weightedCriteria(criteria) {
 }
 
 /**
- * Return an the maximal score than a breed can have regarding the user's criteria
+ * Return the maximal score that a breed can have regarding the user's criteria
  * @param {object} criteria 
  */
 function scoreMax(criteria) {
