@@ -7,6 +7,8 @@ services:
     restart: always
     ports:
       - 3000:3000
+      - 80:8080
     volumes:
       - ./:/var/breedog 
       - /var/api/node_modules
+      - /var/frontend/node_modules

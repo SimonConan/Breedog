@@ -2,9 +2,8 @@ FROM alpine:edge
 
 COPY . /var/breedog
 
-EXPOSE 3000
+EXPOSE 3000 8080
 
-# Installs latest Chromium (77) package.
 RUN apk add --no-cache \
       nodejs \
       npm \
@@ -13,4 +12,4 @@ RUN apk add --no-cache \
 WORKDIR /var/breedog
 RUN make dev
 
-CMD cd api && nodemon server
+CMD cd api && node server.js & cd frontend && http-server
