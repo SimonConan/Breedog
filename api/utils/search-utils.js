@@ -26,12 +26,10 @@ function breedInfo(criteria) {
  */
 function scoreFormula(criteria) {
     return {
-        "$multiply":
-        [
+        "$multiply": [
             100,
             {
-                "$divide": 
-                [ 
+                "$divide": [
                     { "$add": weightedCriteria(criteria) },
                     scoreMax(criteria)
                 ]
@@ -66,7 +64,8 @@ function weightedCriteria(criteria) {
  * @param {object} criteria 
  */
 function scoreMax(criteria) {
-    let scoreMax = 0, i = 0;
+    let scoreMax = 0,
+        i = 0;
     for (const key in criteria) {
         scoreMax += ++i * 5;
     }
