@@ -9,7 +9,7 @@ module.exports = {
     mode: process.env.NODE_ENV || 'development',
     entry: {
         polyfill: "babel-polyfill",
-        breedog: "./src/js/index.js"
+        breedog: "./src/js/app.js"
     },
     output: {
         filename: "assets/js/[name].bundle.js",

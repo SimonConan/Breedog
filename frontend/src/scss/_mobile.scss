@@ -1,0 +1,57 @@
+body {
+
+    font-family: $font-family;
+    font-size: $default-size;
+
+    header {
+        
+        display: flex;
+        padding: 0 5%;
+        justify-content: space-between;
+        vertical-align: center;
+        align-items: center;
+        height: 70px;
+    }
+
+    #top-section {
+
+        background-color: $top-background;
+        color: $top-color;
+
+        h2 {
+            text-align: center;
+            margin-bottom: 4%;
+        }
+
+        p {
+            text-align: center;
+            width: 50%;
+            margin-bottom: 4%;
+            font-size: $top-text-size;
+        }
+    }
+
+    #search {
+        
+        span {
+            align-self: start;
+        }
+
+        div {
+            margin-bottom: 5%;
+            width: 100%;
+            min-height: 100px;
+
+            &#choosen-criteria {
+                border: 1px solid;
+                border-radius: 2%;
+            }
+        }
+
+        input {
+            background-color: black;
+            color: white;
+        }
+        
+    }
+}

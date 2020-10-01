@@ -2,10 +2,15 @@
     {{> partials/head}}
     
     <body>
-        Hello world
-        <div id="test"></div>
+        {{> partials/header}}
 
-        <script src="/assets/js/polyfill.bundle.js"></script>
-        <script src="/assets/js/breedog.bundle.js"></script>
+        {{> partials/top-section
+            title="The dog for you"
+            text="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed eleifend, nunc non blandit molestie, justo velit lobortis nibh, ut lacinia eros diam ac elit."
+        }}
+
+        {{> partials/search-section}}
+
+        {{> partials/scripts}}
     </body>
 </html>
