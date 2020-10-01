@@ -1,4 +1,4 @@
 node_modules
 .env
-frontend/assets/*
-!frontend/assets/.gitkeep 
+frontend/public/*
+!frontend/public/.gitkeep 

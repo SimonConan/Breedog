@@ -1,5 +1,9 @@
 const path = require('path');
+const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+const CssMinimizerPlugin = require('css-minimizer-webpack-plugin');
+const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
+const HandlebarsPlugin = require("handlebars-webpack-plugin");
 
 module.exports = {
     mode: process.env.NODE_ENV || 'development',
@@ -8,17 +12,26 @@ module.exports = {
         breedog: "./src/js/index.js"
     },
     output: {
-        filename: "js/[name].bundle.js",
-        path: path.resolve(__dirname, "assets")
+        filename: "assets/js/[name].bundle.js",
+        path: path.resolve(__dirname, "public")
     },
     devServer: {
         host: '0.0.0.0'
     },
     plugins: [
-        new MiniCssExtractPlugin({
-            filename: "/css/styles.css",
-            chunkFilename: "/css/[id].css",
+        new CleanWebpackPlugin({
+            // verbose:true,
+            cleanOnceBeforeBuildPatterns: ['**/*', '!.gitkeep'],
         }),
+        new MiniCssExtractPlugin({
+            filename: "assets/css/styles.css",
+            chunkFilename: "assets/css/[id].css",
+        }),
+        new HandlebarsPlugin({
+            entry: path.join(process.cwd(), "src", "views", "*.hbs"),
+            output: path.join(process.cwd(), "public", "[name].html"),
+            partials: [path.join(process.cwd(), "src", "views", "partials", "*.hbs")]
+        })
     ],
     module: {
         rules: [{
@@ -42,5 +55,14 @@ module.exports = {
                 ]
             },
         ]
+    },
+    optimization: {
+        minimize: true,
+        minimizer: [
+            new CssMinimizerPlugin(),
+            new UglifyJsPlugin({
+                include: /\.js$/
+            })
+        ],
     }
 };

@@ -12,4 +12,4 @@ RUN apk add --no-cache \
 WORKDIR /var/breedog
 RUN make dev
 
-CMD cd api && node server.js & cd frontend && http-server
+CMD cd api && node server.js & cd frontend/public && http-server

@@ -1,4 +1,3 @@
-import '../scss/index.scss';
+import '../scss/main.scss';
 
-const testDiv = document.getElementById('test');
-testDiv.textContent = 'This is a setup test 23';
+import './_home';
