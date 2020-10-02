@@ -5,6 +5,7 @@ const CssMinimizerPlugin = require('css-minimizer-webpack-plugin');
 const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
 const HandlebarsPlugin = require("handlebars-webpack-plugin");
 const ImageminPlugin = require('imagemin-webpack-plugin').default;
+const imageminMozjpeg = require('imagemin-mozjpeg');
 const glob = require('glob');
 
 module.exports = {
@@ -36,11 +37,20 @@ module.exports = {
         }),
         new ImageminPlugin({
             externalImages: {
-                context: 'src', // Important! This tells the plugin where to "base" the paths at
+                context: 'src',
                 sources: glob.sync('src/images/*'),
                 destination: 'public/assets/images',
-                fileName: '[name].[ext]' // (filePath) => filePath.replace('jpg', 'webp') is also possible
-            }
+                fileName: '[name].[ext]'
+            },
+            pngquant: {
+                quality: '50-60'
+            },
+            plugins: [
+                imageminMozjpeg({
+                  quality: 50,
+                  progressive: true
+                })
+              ]
         })
     ],
     module: {
@@ -64,6 +74,16 @@ module.exports = {
                     { loader: "sass-loader" }
                 ]
             },
+            {
+                test: /\.(ttf|eot|svg|png|jpg|gif|ico)(\?v=[0-9]\.[0-9]\.[0-9])?$/,
+                use: {
+                    loader: 'file-loader',
+                    options: {
+                        name: '[name].[ext]',
+                        outputPath: '/assets/images'
+                    }
+                }
+            }
         ]
     },
     optimization: {
