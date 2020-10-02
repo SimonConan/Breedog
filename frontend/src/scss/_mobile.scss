@@ -44,11 +44,11 @@ body {
 
             &#choosen-criteria {
                 border: 1px solid;
-                border-radius: 2%;
+                border-radius: 1%;
             }
         }
 
-        input {
+        input[type="button"] {
             background-color: black;
             color: white;
         }
