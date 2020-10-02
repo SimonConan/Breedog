@@ -4,6 +4,8 @@ const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const CssMinimizerPlugin = require('css-minimizer-webpack-plugin');
 const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
 const HandlebarsPlugin = require("handlebars-webpack-plugin");
+const ImageminPlugin = require('imagemin-webpack-plugin').default;
+const glob = require('glob');
 
 module.exports = {
     mode: process.env.NODE_ENV || 'development',
@@ -31,6 +33,14 @@ module.exports = {
             entry: path.join(process.cwd(), "src", "views", "*.hbs"),
             output: path.join(process.cwd(), "public", "[name].html"),
             partials: [path.join(process.cwd(), "src", "views", "partials", "*.hbs")]
+        }),
+        new ImageminPlugin({
+            externalImages: {
+                context: 'src', // Important! This tells the plugin where to "base" the paths at
+                sources: glob.sync('src/images/*'),
+                destination: 'public/assets/images',
+                fileName: '[name].[ext]' // (filePath) => filePath.replace('jpg', 'webp') is also possible
+            }
         })
     ],
     module: {

@@ -7,7 +7,13 @@ EXPOSE 3000 8080
 RUN apk add --no-cache \
       nodejs \
       npm \
-      make
+      make \
+      g++ \
+      autoconf \
+      automake \
+      libtool\
+      nasm \
+      zlib-dev
 
 WORKDIR /var/breedog
 RUN make dev

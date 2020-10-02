@@ -9,3 +9,4 @@ install-backend:
 
 install-frontend:
 	cd /var/breedog/frontend && npm install
+	cd /var/breedog/frontend && npm run build
