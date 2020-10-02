@@ -1,4 +1,4 @@
-dev: install-globals install-backend install-frontend
+install: install-globals install-backend install-frontend
 
 install-globals:
 	npm install -g nodemon

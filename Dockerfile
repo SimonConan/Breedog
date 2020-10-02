@@ -16,6 +16,6 @@ RUN apk add --no-cache \
       zlib-dev
 
 WORKDIR /var/breedog
-RUN make dev
+RUN make install
 
 CMD cd api && node server.js & cd frontend/public && http-server
