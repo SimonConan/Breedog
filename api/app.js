@@ -7,6 +7,11 @@ const breedsRouter = require('./routes/breeds');
 const app = express();
 
 app
+    .use((req, res, next) => {
+        res.header('Access-Control-Allow-Origin', '*');
+        res.header('Access-Control-Allow-Methods', 'GET, PATCH, PUT, POST, DELETE, OPTIONS');
+        next();
+    })
     .use(bodyParser.json())
     .use('/api/criteria', criteriaRouter)
     .use('/api/breeds', breedsRouter)
