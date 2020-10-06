@@ -4,6 +4,17 @@ body {
     font-size: $default-size;
     background-color: $global-background;
 
+    .error {
+        background-color: #ff00002e;
+        border: #ff00002e;
+
+        &::before {
+            font-size: 0.8rem;
+            margin: 5px;
+            display: inline-block;
+        }
+    }
+
     header {
 
         display: flex;
@@ -77,6 +88,10 @@ body {
                 padding: 0 1%;
                 border: 1px solid;
                 border-radius: 2px;
+
+                &.error::before {
+                    content: "Vous devez choisir au moins 1 critère";
+                }
             }
         }
 
