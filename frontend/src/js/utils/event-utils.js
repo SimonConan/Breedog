@@ -52,4 +52,4 @@ function scrollTo(top) {
         top: top,
         behavior: "smooth"
     });
-};
+}

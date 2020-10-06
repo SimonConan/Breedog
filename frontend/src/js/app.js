@@ -1,3 +1,6 @@
 import '../scss/main.scss';
 
-import './_home';
+const home = require('./_home'),
+    results = require('./_results');
+
+document.querySelector('body').classList.contains('home') ? home.home() : results.results();

@@ -7,24 +7,27 @@ section {
 
 h1 {
     font-size: $title1-size;
-    font-weight: 700;
+    font-weight: $title1-weight;
 }
 
 h2 {
     font-size: $title2-size;
-    font-weight: 700;
+    font-weight: $title1-weight;
 }
 
 .button{
     display: inline-flex;
     align-items: center;
-    height: 33px;
+    justify-content: center;
+    height: $button-height;
     padding: 0 4%;
     font-family: $font-family;
     font-size: $button-size;
     background-color: $global-background;
     border-radius: 5px;
-    border: 1px solid black;
+    border: 1px solid $button-border-color;
+    white-space: nowrap;
+    min-width: $button-min-width;
 
     &:hover {
         cursor: pointer;
@@ -36,14 +39,14 @@ span.criteria {
     padding: 5px 10px;
     margin: 1% 1% 1% 0;
     display: inline-block;
-    background: black;
-    color: white;
-    border: 1px solid black;
+    background: $criteria-background-color;
+    color: $criteria-color;
+    border: 1px solid $criteria-background-color;
     border-radius: 5px;
 
     &:hover {
         cursor: pointer;
-        background-color: white;
-        color: black;
+        background-color: $criteria-background-color-hover;
+        color: $criteria-color-hover;
     }
 }

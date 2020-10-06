@@ -1,28 +1,30 @@
-const api = require('./utils/api-utils'),
-    dUtils = require('./utils/data-utils'),
-    eUtils = require('./utils/event-utils');
+exports.home = () => {
+    const api = require('./utils/api-utils'),
+        dUtils = require('./utils/data-utils'),
+        eUtils = require('./utils/event-utils');
 
-const chosenCriteria = document.getElementById('chosen-criteria'),
-    remainingCriteria = document.getElementById('remaining-criteria');
+    const chosenCriteria = document.getElementById('chosen-criteria'),
+        remainingCriteria = document.getElementById('remaining-criteria');
 
-// API call to get all the criteria
-api.getApiResult("GET", process.env.API_GET_CRITERIA)
-    .then(res => {
+    // API call to get all the criteria
+    api.getApiResult("GET", process.env.API_GET_CRITERIA)
+        .then(res => {
 
-        const criteriaList = JSON.parse(res);
+            const criteriaList = JSON.parse(res);
 
-        dUtils.toArray(criteriaList).forEach(element => {
-            element.forEach(criteria => {
-                const currentCriteriaElement = document.createElement("span");
-                currentCriteriaElement.className = 'criteria';
-                currentCriteriaElement.setAttribute('data-criteria', Object.keys(criteria));
-                currentCriteriaElement.textContent = criteria[Object.keys(criteria)];
-                remainingCriteria.appendChild(currentCriteriaElement);
+            dUtils.toArray(criteriaList).forEach(element => {
+                element.forEach(criteria => {
+                    const currentCriteriaElement = document.createElement("span");
+                    currentCriteriaElement.className = 'criteria';
+                    currentCriteriaElement.setAttribute('data-criteria', Object.keys(criteria));
+                    currentCriteriaElement.textContent = criteria[Object.keys(criteria)];
+                    remainingCriteria.appendChild(currentCriteriaElement);
+                });
             });
-        });
 
-    })
-    .catch(error => console.error(error));
+        })
+        .catch(error => console.error(error));
 
-// Function call to manage all events of the homepage
-eUtils.homeClickEvents(chosenCriteria, remainingCriteria);
+    // Function call to manage all events of the homepage
+    eUtils.homeClickEvents(chosenCriteria, remainingCriteria);
+};

@@ -3,10 +3,45 @@ $global-background: #ececec47;
 $color: black;
 $font-family: 'Roboto', sans-serif;;
 $default-size: 18px;
-$title1-size: 1.3rem;
-$title2-size: 2.4rem;
-$button-size: 1rem;
 
+// Titles
+$title1-size: 1.3rem;
+$title1-weight: 700;
+$title2-size: 2.4rem;
+
+// Buttons
+$button-min-width: 100px;
+$button-size: 1rem;
+$button-height: 33px;
+$button-border-color: black;
+
+// Error
+$error-font-size: 0.8rem;
+$error-background-color: #ff00002e;
+$error-text-search: "Vous devez choisir au moins 1 critère";
+
+// Header
+$header-height: 70px;
 
 // Top Section
 $top-color: white;
+$top-image: url("../images/Chercher-Race-Chien.jpg");
+$top-grayscale: grayscale(50%);
+$top-button-background-color: black;
+$top-button-color: white;
+
+// Criteria
+$criteria-background-color: black;
+$criteria-color: white;
+$criteria-background-color-hover:white;
+$criteria-color-hover: black;
+
+// Results
+$results-font-size: 1.3rem;
+$results-div-height: 300px;
+$results-h3-font-size: 2rem;
+
+// Affinity score
+$results-height-score: 60px;
+$affinity-background: white;
+$affinity-border-width: 5px;
