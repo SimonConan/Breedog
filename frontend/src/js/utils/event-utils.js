@@ -22,4 +22,4 @@ exports.homeClickEvents = (button, placeToScrollTo) => {
             behavior: "smooth"
         });
     });
-}
+};
