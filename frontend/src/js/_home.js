@@ -1,12 +1,12 @@
-const api = require('./utils/api-utils');
-const dUtils = require('./utils/data-utils');
-const eUtils = require('./utils/event-utils');
+const api = require('./utils/api-utils'),
+    dUtils = require('./utils/data-utils'),
+    eUtils = require('./utils/event-utils');
 
 const chosenCriteria = document.getElementById('chosen-criteria'),
-    remainingCriteria = document.getElementById('remaining-criteria'),
-    buttonTopSection = document.querySelector('#top-section .button');
+    remainingCriteria = document.getElementById('remaining-criteria');
 
-api.getApiResult("GET", "http://localhost:3000/api/criteria")
+// API call to get all the criteria
+api.getApiResult("GET", process.env.API_GET_CRITERIA)
     .then(res => {
 
         const criteriaList = JSON.parse(res);
@@ -24,5 +24,5 @@ api.getApiResult("GET", "http://localhost:3000/api/criteria")
     })
     .catch(error => console.error(error));
 
-eUtils.homeCriteriaEvents(chosenCriteria, remainingCriteria);
-eUtils.homeClickEvents(buttonTopSection, chosenCriteria);
+// Function call to manage all events of the homepage
+eUtils.homeClickEvents(chosenCriteria, remainingCriteria);

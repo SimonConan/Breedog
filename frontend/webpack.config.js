@@ -7,6 +7,7 @@ const HandlebarsPlugin = require("handlebars-webpack-plugin");
 const ImageminPlugin = require('imagemin-webpack-plugin').default;
 const imageminMozjpeg = require('imagemin-mozjpeg');
 const glob = require('glob');
+const Dotenv = require('dotenv-webpack');
 
 module.exports = {
     mode: process.env.NODE_ENV || 'development',
@@ -23,7 +24,6 @@ module.exports = {
     },
     plugins: [
         new CleanWebpackPlugin({
-            // verbose:true,
             cleanOnceBeforeBuildPatterns: ['**/*', '!.gitkeep'],
         }),
         new MiniCssExtractPlugin({
@@ -51,7 +51,8 @@ module.exports = {
                   progressive: true
                 })
               ]
-        })
+        }),
+        new Dotenv()
     ],
     module: {
         rules: [{
