@@ -13,4 +13,4 @@ function toArray(obj, topProp) {
 
 module.exports = {
     toArray,
-}
+};

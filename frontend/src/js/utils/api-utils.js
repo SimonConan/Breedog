@@ -31,4 +31,4 @@ function makeRequest(method, url) {
 
 module.exports = {
     getApiResult
-}
+};

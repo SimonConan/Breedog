@@ -3,9 +3,8 @@ const dUtils = require('./utils/data-utils');
 const eUtils = require('./utils/event-utils');
 
 const chosenCriteria = document.getElementById('chosen-criteria'),
-    remainingCriteria = document.getElementById('remaining-criteria');
-
-eUtils.homeEvents(chosenCriteria, remainingCriteria);
+    remainingCriteria = document.getElementById('remaining-criteria'),
+    buttonTopSection = document.querySelector('#top-section .button');
 
 api.getApiResult("GET", "http://localhost:3000/api/criteria")
     .then(res => {
@@ -24,3 +23,6 @@ api.getApiResult("GET", "http://localhost:3000/api/criteria")
 
     })
     .catch(error => console.error(error));
+
+eUtils.homeCriteriaEvents(chosenCriteria, remainingCriteria);
+eUtils.homeClickEvents(buttonTopSection, chosenCriteria);

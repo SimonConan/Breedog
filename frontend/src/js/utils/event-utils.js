@@ -1,7 +1,7 @@
 /**
  * We use event delegation to avoid targeting problems
  */
-exports.homeEvents = (chosenCriteria, remainingCriteria) => {
+exports.homeCriteriaEvents = (chosenCriteria, remainingCriteria) => {
     document.addEventListener('click', e => {
                 
         if(e.target.matches('span.criteria')) {
@@ -14,3 +14,12 @@ exports.homeEvents = (chosenCriteria, remainingCriteria) => {
 
     });
 };
+
+exports.homeClickEvents = (button, placeToScrollTo) => {
+    button.addEventListener('click', () => {
+        window.scrollTo({
+            top: placeToScrollTo.offsetTop,
+            behavior: "smooth"
+        });
+    });
+}
