@@ -6,7 +6,7 @@ const chosenCriteria = document.getElementById('chosen-criteria'),
     remainingCriteria = document.getElementById('remaining-criteria');
 
 // API call to get all the criteria
-api.getApiResult("GET", "http://localhost:3000/api/criteria")
+api.getApiResult("GET", process.env.API_GET_CRITERIA)
     .then(res => {
 
         const criteriaList = JSON.parse(res);

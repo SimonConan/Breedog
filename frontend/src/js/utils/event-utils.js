@@ -25,7 +25,7 @@ exports.homeClickEvents = (chosenCriteria, remainingCriteria) => {
                 scrollTo(chosenCriteria.offsetTop - 20);
                 return;
             }
-            api.getApiResult('POST', 'http://localhost:3000/api/search', chosenCriteriaApiObject)
+            api.getApiResult('POST', process.env.API_GET_RESULT, chosenCriteriaApiObject)
                 .then(res => console.log(res))
                 .catch(err => console.error(err));
 
