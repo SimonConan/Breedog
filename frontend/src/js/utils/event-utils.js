@@ -26,7 +26,10 @@ exports.homeClickEvents = (chosenCriteria, remainingCriteria) => {
                 return;
             }
             api.getApiResult('POST', process.env.API_GET_RESULT, chosenCriteriaApiObject)
-                .then(res => console.log(res))
+                .then(res => {
+                    document.cookie = process.env.RESULT_COOKIE_NAME + "=" + JSON.parse(res) +"; max-age=" + process.env.RESULT_COOKIE_MAX_AGE + "; path=/";
+                    // window.location.href = "/results.html";
+                })
                 .catch(err => console.error(err));
 
         // Make the default button click behavior to scroll to the search

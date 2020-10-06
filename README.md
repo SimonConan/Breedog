@@ -19,7 +19,7 @@ cp frontend/.env.sample frontend/.env && vim frontend/.env
 
 ## Dev usage
 
-Will launch both http-server for the frontend and node server for the backend
+Will launch both http-server for the frontend and node server for the backend\
 [API is accessible via localhost:3000](localhost:3000)\
 [Frontend is accessible via localhost:80](localhost:80)
 
