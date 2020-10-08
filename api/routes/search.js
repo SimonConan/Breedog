@@ -3,6 +3,8 @@ const router = express.Router();
 
 const searchCtrl = require('../controllers/search');
 
-router.post('/', searchCtrl.searchBreeds);
+router
+    .post('/', searchCtrl.saveSearch)
+    .post('/:id', searchCtrl.searchBreeds);
 
 module.exports = router;
