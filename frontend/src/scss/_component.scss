@@ -15,7 +15,7 @@ h2 {
     font-weight: $title1-weight;
 }
 
-.button{
+.button {
     display: inline-flex;
     align-items: center;
     justify-content: center;
@@ -48,5 +48,14 @@ span.criteria {
         cursor: pointer;
         background-color: $criteria-background-color-hover;
         color: $criteria-color-hover;
+    }
+}
+
+a {
+    text-decoration: none;
+    color: $color;
+
+    &:hover, &:visited, &:active {
+        color: inherit;
     }
 }
