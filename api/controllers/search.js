@@ -29,19 +29,25 @@ exports.saveSearch = (req, res, next) => {
 /**
  * Return the top breeds based on the given criteria
  */
-exports.searchBreeds = (req, res, next) => {
+async function searchBreeds(req, res, next){
 
-    if(!req.body) res.status(500).json({ error: 'No body is specified' });
+    try {
+        const savedSearch = await Search.findById(req.params.id);
 
-    // We get all the criteria (to return and weighted) to use them in the project below
-    const criteriaSearch = sUtils.breedInfo(req.body);
+        // We get all the criteria (to return and weighted) to use them in the project below
+        const criteriaSearch = sUtils.breedInfo(JSON.parse(savedSearch.object));
 
-    // We send the request to the DB, sort by score DESC and limit the results to the value specified in the .env file
-    Breeds.aggregate([
-            { "$project": criteriaSearch },
-            { "$sort": { "score": -1 } },
-            { "$limit": parseInt(process.env.RESULTS_LIMIT) }
-        ])
-        .then(sortedBreeds => res.status(200).json(sortedBreeds))
-        .catch(error => res.status(500).json({ error: error.message }));
-};
+        // We send the request to the DB, sort by score DESC and limit the results to the value specified in the .env file
+        await Breeds.aggregate([
+                { "$project": criteriaSearch },
+                { "$sort": { "score": -1 } },
+                { "$limit": parseInt(process.env.RESULTS_LIMIT) }
+            ])
+            .then(sortedBreeds => res.status(200).json(sortedBreeds));
+
+    } catch (error) {
+        res.status(500).json({ error: error.message });
+    }
+
+}
+module.exports.searchBreeds = searchBreeds;
