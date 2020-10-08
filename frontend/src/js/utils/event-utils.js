@@ -32,7 +32,7 @@ exports.homeClickEvents = (chosenCriteria, remainingCriteria) => {
             api.getApiResult('POST', process.env.API_SEARCH, chosenCriteriaApiObject)
                 .then(res => {
                     cUtils.setCookie(res);
-                    window.location.href = process.env.RESULT_PAGE + res.replace(/\"/g, "");
+                    window.location.href = process.env.RESULT_PAGE;
                 })
                 .catch(err => console.error(err));
                 
